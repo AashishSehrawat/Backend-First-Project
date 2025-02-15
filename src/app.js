@@ -21,6 +21,17 @@ app.use(express.json({ limit: "16kb" }));
 // how to get data from urls
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 // how to store locally images, pdf, etc.
-app.use(express.static("public"))
+app.use(express.static("public"));
+
+app.use(cookieParser());
+
+
+// routes import 
+import userRouter from './routes/user.route.js'
+
+
+// routes decleration
+app.use("/api/v1/users", userRouter);
+
 
 export { app };
