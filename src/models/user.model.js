@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Password is required'],
     },
-    refershToken: {
+    refreshToken: {
         type: String,
     }
 } , { timestamps: true })
@@ -86,12 +86,13 @@ userSchema.methods.generateRefreshToken = function() {
         {
             _id: this._id,
         },
-        process.env.REFRESH_TOEKN_SECRET,
+        process.env.REFRESH_TOKEN_SECRET,
         {
-            expiresIn: process.env.REFRESH_TOEKN_EXPIRY,
+            expiresIn: process.env.REFRESH_TOKEN_EXPIRY,
         }
     )
 }
 
 
 export const User = mongoose.model("User" , userSchema);
+
